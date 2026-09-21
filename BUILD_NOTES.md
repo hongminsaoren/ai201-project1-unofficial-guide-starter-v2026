@@ -30,3 +30,9 @@ The assignment asks the student to author criteria 4 and 5 and the rationale
 for all five criteria. Those remain pending; AI must not be described as having
 received or validated criteria the student has not supplied. Do not claim a
 complete submission until these and a real generated sample answer are present.
+
+## Starter observation
+
+Before replacing the chunker, the required advice_threads command reported
+**26** chunks total. Test questions and expected phrases were selected directly
+from source documents, before retrieving answers to those five questions.
