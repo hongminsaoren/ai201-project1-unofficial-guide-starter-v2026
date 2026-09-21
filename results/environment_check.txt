@@ -1,0 +1,31 @@
+
+AI201 environment check
+------------------------------------------------------------
+[PASS] Python version
+         3.12.0 on Darwin
+[PASS] Virtual environment
+         /Users/raoyinan/.codex/visualizations/2026/09/21/01a0c1d2-b34c-7e73-a494-b5708991ace6/ai201-project1/.venv
+[PASS] Pinned packages
+         all 7 import cleanly
+[PASS] Free disk space
+         171.6 GB
+[PASS] Memory
+         18.0 GB
+[PASS] Key hygiene
+         .env is ignored by git
+[FAIL] API key
+         GEMINI_API_KEY still holds the placeholder text.
+[ .. ] Embedding model — first run downloads ~80 MB, this is the slow part
+[PASS] Embedding model
+         all-MiniLM-L6-v2 loaded, 384-dim vectors
+[PASS] Vector store
+         Chroma round trip on a cosine collection
+[SKIP] Model call
+         no key to test with
+------------------------------------------------------------
+8 passed, 1 failed, 0 to look at, 1 skipped
+
+Not ready yet. Fix the FAIL lines above, then run test.py again.
+Still stuck after one honest attempt? Post the whole output in the
+help channel — the day before class, not the morning of.
+
