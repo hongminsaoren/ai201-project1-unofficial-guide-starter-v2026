@@ -54,7 +54,7 @@ def fallback_split(
     something to compare your own strategy against is useful in unit 2.
     """
     chunk_size = chunk_size or config.CHUNK_SIZE
-    overlap = overlap or config.CHUNK_OVERLAP
+    overlap = config.CHUNK_OVERLAP if overlap is None else overlap
 
     if overlap >= chunk_size:
         raise ValueError("overlap has to be smaller than chunk_size")
@@ -81,23 +81,47 @@ def fallback_split(
 
 
 def split_documents(documents: list[Document]) -> list[Chunk]:
+    """Keep short posts whole; split longer bodies at complete thought boundaries.
+
+    CHUNK_SIZE is a soft body budget. Titles repeat as context. Body overlap
+    is zero. A single over-budget sentence stays whole to avoid losing meaning.
     """
-    Split documents into chunks. ⚠️ REPLACE THE BODY OF THIS IN MILESTONE 3.
+    import re
 
-    Right now it just calls the fallback. That is the plain, generic behaviour
-    the brief is talking about.
-
-    When you write your own strategy, set `produced_by` to
-    "chunker.py::split_documents" so your README's Sample Chunks section names
-    the right function. `app.py chunks` prints that string for you.
-
-    Things worth thinking about before you write any code:
-      - Are your documents short posts or long guides?
-      - Is the useful information in one sentence, or spread over a paragraph?
-      - Would splitting on paragraph breaks keep more thoughts intact than
-        splitting on a character count?
-    """
-    return fallback_split(documents)
+    if config.CHUNK_SIZE <= 0:
+        raise ValueError("CHUNK_SIZE must be positive")
+    if config.CHUNK_OVERLAP != 0:
+        raise ValueError("This paragraph chunker uses zero body overlap")
+    chunks: list[Chunk] = []
+    for doc in documents:
+        paragraphs = [p.strip() for p in re.split(r"\n\s*\n", doc.text) if p.strip()]
+        if not paragraphs:
+            continue
+        # Supplied campus posts start with a short, standalone title.
+        has_title = len(paragraphs) > 1 and "\n" not in paragraphs[0] and len(paragraphs[0]) <= 100
+        title = paragraphs[0] if has_title else ""
+        body = paragraphs[1:] if has_title else paragraphs
+        units = []
+        for paragraph in body:
+            if len(paragraph) <= config.CHUNK_SIZE:
+                units.append(paragraph)
+            else:
+                units.extend(re.split(r'(?<=[.!?])\s+(?=[A-Z"“])', paragraph))
+        batches = []
+        current = ""
+        for unit in units:
+            proposed = current + "\n\n" + unit if current else unit
+            if current and len(proposed) > config.CHUNK_SIZE:
+                batches.append(current)
+                current = unit
+            else:
+                current = proposed
+        if current:
+            batches.append(current)
+        for index, body_text in enumerate(batches):
+            text = f"{title}\n\n{body_text}" if title else body_text
+            chunks.append(Chunk(text, doc.source, index, "chunker.py::split_documents"))
+    return chunks
 
 
 def describe(chunks: list[Chunk]) -> str:

@@ -1,0 +1,1 @@
+89 chunks, 314 characters on average (shortest 178, longest 516), produced by chunker.py::split_documents
