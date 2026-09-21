@@ -13,19 +13,17 @@ AI201 environment check
          18.0 GB
 [PASS] Key hygiene
          .env is ignored by git
-[FAIL] API key
-         GEMINI_API_KEY still holds the placeholder text.
+[PASS] API key
+         loaded, 53 characters
 [ .. ] Embedding model — first run downloads ~80 MB, this is the slow part
 [PASS] Embedding model
          all-MiniLM-L6-v2 loaded, 384-dim vectors
 [PASS] Vector store
          Chroma round trip on a cosine collection
-[SKIP] Model call
-         no key to test with
+[PASS] Model call
+         gemini-3.5-flash-lite replied "Ready."
 ------------------------------------------------------------
-8 passed, 1 failed, 0 to look at, 1 skipped
+10 passed, 0 failed, 0 to look at, 0 skipped
 
-Not ready yet. Fix the FAIL lines above, then run test.py again.
-Still stuck after one honest attempt? Post the whole output in the
-help channel — the day before class, not the morning of.
+You're set. See you in class.
 

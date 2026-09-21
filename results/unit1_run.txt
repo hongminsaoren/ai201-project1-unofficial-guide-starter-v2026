@@ -1,0 +1,25 @@
+How are juniors and seniors ranked in the housing lottery?
+Juniors and seniors are ordered by accumulated credit hours first, and only tie-break randomly (admin_housing_lottery.txt).
+
+Sources: admin_housing_lottery.txt
+How much does a wash cost in Aldridge Hall, and how do you pay?
+A wash in Aldridge Hall costs $1.75 and payment is card only (`housing_aldridge_hall_laundry.txt`, `housing_aldridge_hall.txt`).
+
+Sources: housing_aldridge_hall_laundry.txt, housing_aldridge_hall.txt
+What appears on my transcript if I drop a course after week two?
+If you drop a course after week two, it shows as a W on your transcript (admin_add_drop_deadline.txt).
+
+Sources: admin_add_drop_deadline.txt
+How much printing credit does each student get per semester?
+Each student gets $30 of printing per semester (admin_printing_quota.txt).
+
+Sources: admin_printing_quota.txt
+What problem was reported on the ground floor of Morrow House?
+A known damp problem was reported on the ground floor of Morrow House, which resulted in two rooms being taken offline in 2024.
+
+Sources: housing_morrow_house.txt
+REFUSED (0 model calls): What is the capital of Mongolia?
+REFUSED (0 model calls): How do I change the oil in a diesel engine?
+REFUSED (0 model calls): Who won the 1994 World Cup?
+REFUSED (0 model calls): What is the recommended dosage of ibuprofen for a headache?
+REFUSED (0 model calls): How do I write a for loop in Rust?

@@ -1,0 +1,137 @@
+{
+  "model": "gemini-3.5-flash-lite",
+  "threshold": 0.6,
+  "note": "One actual run per question; this is not the Unit 2 repeated evaluation.",
+  "records": [
+    {
+      "question": "How are juniors and seniors ranked in the housing lottery?",
+      "refused": false,
+      "best_distance": 0.20342244605545434,
+      "threshold": 0.6,
+      "sources": [
+        "admin_housing_lottery.txt",
+        "course_stat_150_exams.txt",
+        "housing_morrow_house.txt",
+        "housing_old_brewhouse.txt",
+        "housing_tamsin_court.txt"
+      ],
+      "prompt": "Documents:\n\n[from admin_housing_lottery.txt]\nOn the housing lottery\n\nThe housing lottery is not random in the way most people assume. Rising sophomores get a number drawn at random, but juniors and seniors are ordered by accumulated credit hours first, and only tie-break randomly. That means a senior who took summer courses reliably beats a senior who didn't. Numbers come out the second week of March and selection runs over four evenings.\n\n[from housing_tamsin_court.txt]\nTamsin Court \u2014 what it's actually like\n\nI lived here my sophomore year. Built 2021. Rooms are studio apartments with private kitchen and bathroom.\n\nThe good: the most independent housing on campus, and the only option with a full kitchen.\n\nThe bad: the most expensive tier by a wide margin, and isolating if you're new.\n\nLaundry costs in-unit washer-dryer. On noise: quiet, structurally \u2014 concrete floors between units.\n\n[from course_stat_150_exams.txt]\nSTAT 150 Applied Statistics \u2014 assessment\n\nThree equally weighted midterms, no final. No curve, but the lowest midterm is dropped.\n\nThe dropped midterm makes the first one low-stakes; use it to learn the format.\n\n[from housing_old_brewhouse.txt]\nOld Brewhouse \u2014 what it's actually like\n\nTook this last spring. Built 1902 as a brewery, converted to housing in 1998. Rooms are doubles and triples with unusual floor plans, no two alike.\n\nThe good: the most characterful building on campus and people get attached to it.\n\nThe bad: the heating is uneven \u2014 some rooms run hot all winter and can't be adjusted.\n\n[from housing_morrow_house.txt]\nMorrow House \u2014 what it's actually like\n\nJust finished a year in this building. Built 1954, partially renovated 2008. Rooms are singles and doubles, hall bathrooms.\n\nThe good: cheapest housing tier by about $900 a year, and the singles are real singles.\n\nThe bad: known damp problem on the ground floor; two rooms were taken offline in 2024.\n\nLaundry costs $1.50 wash, $1.25 dry, coin or card. On noise: loud until about 1am on weekends, no enforced quiet hours.\n\n---\n\nQuestion: How are juniors and seniors ranked in the housing lottery?\n\nAnswer using only the documents above, and name the file you used.",
+      "answer": "Juniors and seniors are ordered by accumulated credit hours first, and only tie-break randomly (admin_housing_lottery.txt).\n\nSources: admin_housing_lottery.txt",
+      "generation_calls": 1
+    },
+    {
+      "question": "How much does a wash cost in Aldridge Hall, and how do you pay?",
+      "refused": false,
+      "best_distance": 0.2732248102229168,
+      "threshold": 0.6,
+      "sources": [
+        "housing_aldridge_hall.txt",
+        "housing_aldridge_hall_laundry.txt",
+        "housing_calder_annexe_laundry.txt",
+        "housing_innisfree_hall_laundry.txt",
+        "housing_old_brewhouse.txt"
+      ],
+      "prompt": "Documents:\n\n[from housing_aldridge_hall_laundry.txt]\nLaundry in Aldridge Hall\n\nMachines take $1.75 wash, $1.50 dry, card only. There are eight washers and six dryers for the building, which is the wrong ratio and means the dryers back up on Sunday evenings.\n\nBest time to do laundry here is Tuesday or Wednesday morning. Sunday after 6pm you will wait.\n\n[from housing_aldridge_hall.txt]\nAldridge Hall \u2014 what it's actually like\n\nI lived here my sophomore year. Built 1968, renovated 2019. Rooms are doubles with a shared bathroom per floor.\n\nThe good: closest building to the science quad, four minutes to a 9am lab.\n\nThe bad: the elevator is out roughly one week per semester.\n\nLaundry costs $1.75 wash, $1.50 dry, card only. On noise: quiet floors on 3 and 4 are genuinely enforced.\n\n[from housing_innisfree_hall_laundry.txt]\nLaundry in Innisfree Hall\n\nMachines take $1.75 wash, $1.75 dry, app-based. There are eight washers and six dryers for the building, which is the wrong ratio and means the dryers back up on Sunday evenings.\n\nBest time to do laundry here is Tuesday or Wednesday morning. Sunday after 6pm you will wait.\n\n[from housing_old_brewhouse.txt]\nOld Brewhouse \u2014 what it's actually like\n\nLaundry costs $1.50 wash, $1.50 dry, coin only, and the machines are old. On noise: sound carries strangely because of the original brick; a room two floors up can be louder than next door.\n\n[from housing_calder_annexe_laundry.txt]\nLaundry in Calder Annexe\n\nMachines take $2.00 wash, $1.75 dry, app-based. There are eight washers and six dryers for the building, which is the wrong ratio and means the dryers back up on Sunday evenings.\n\nBest time to do laundry here is Tuesday or Wednesday morning. Sunday after 6pm you will wait.\n\n---\n\nQuestion: How much does a wash cost in Aldridge Hall, and how do you pay?\n\nAnswer using only the documents above, and name the file you used.",
+      "answer": "A wash in Aldridge Hall costs $1.75 and payment is card only (`housing_aldridge_hall_laundry.txt`, `housing_aldridge_hall.txt`).\n\nSources: housing_aldridge_hall_laundry.txt, housing_aldridge_hall.txt",
+      "generation_calls": 1
+    },
+    {
+      "question": "What appears on my transcript if I drop a course after week two?",
+      "refused": false,
+      "best_distance": 0.2674631547231121,
+      "threshold": 0.6,
+      "sources": [
+        "admin_add_drop_deadline.txt",
+        "admin_grade_appeals.txt",
+        "admin_pass_fail_option.txt",
+        "admin_transcript_requests.txt",
+        "admin_withdrawal_deadline.txt"
+      ],
+      "prompt": "Documents:\n\n[from admin_add_drop_deadline.txt]\nOn the add/drop deadline\n\nYou can add a course through the end of the second week. Dropping is a longer window \u2014 through the end of week six \u2014 but a drop after week two shows as a W on your transcript. Nothing anywhere on the registrar's site says this plainly, and students find out from each other.\n\n[from admin_withdrawal_deadline.txt]\nOn the withdrawal deadline\n\nWithdrawal is a different thing from dropping and has a different date. Dropping ends at week six. Withdrawal runs to week ten, requires an adviser signature, and puts a W on the transcript that doesn't affect GPA. The two dates appear on different pages of the registrar's site and this catches people every year.\n\n[from admin_transcript_requests.txt]\nOn the transcript requests\n\nOfficial transcripts cost $8 and take three business days electronically, or ten by post. Unofficial ones are free and instant from the student portal, and are accepted by most employers and by every graduate programme at the application stage.\n\n[from admin_pass_fail_option.txt]\nOn the pass/fail option\n\nAny course outside your major can be taken pass/fail, and \u2014 the part nobody mentions \u2014 you can declare it as late as week eight, after you've seen your midterm. A pass needs a C- or better. Two per year, maximum eight across a degree.\n\n[from admin_grade_appeals.txt]\nOn the grade appeals\n\nA grade appeal starts with the instructor and has to be raised within fifteen days of the grade posting. Only after that does it go to the department. Skipping the instructor step gets the appeal returned, which wastes most of the fifteen days.\n\n---\n\nQuestion: What appears on my transcript if I drop a course after week two?\n\nAnswer using only the documents above, and name the file you used.",
+      "answer": "If you drop a course after week two, it shows as a W on your transcript (admin_add_drop_deadline.txt).\n\nSources: admin_add_drop_deadline.txt",
+      "generation_calls": 1
+    },
+    {
+      "question": "How much printing credit does each student get per semester?",
+      "refused": false,
+      "best_distance": 0.3766695918712749,
+      "threshold": 0.6,
+      "sources": [
+        "admin_campus_jobs_and_financial_aid.txt",
+        "admin_graduation_requirements.txt",
+        "admin_printing_quota.txt",
+        "money_jobs.txt",
+        "money_textbooks.txt"
+      ],
+      "prompt": "Documents:\n\n[from admin_printing_quota.txt]\nOn the printing quota\n\nEvery student gets $30 of printing per semester, which is roughly 600 black-and-white pages. It does not roll over. Colour costs eight times as much per page, which people discover after printing one poster.\n\n[from admin_graduation_requirements.txt]\nOn the graduation requirements\n\n120 credit hours, a completed major, and the general education requirements. The one that trips people is the writing-intensive requirement: two courses, and they must be taken in different departments. Check this in your third year, not your fourth.\n\n[from money_textbooks.txt]\nTextbooks without paying full price\n\nThe library holds one copy of most required texts on two-hour reserve. For courses where the text is used constantly that isn't enough, but for the reading-light courses it's genuinely all you need.\n\nThe campus store price-matches, which is not advertised anywhere and you have to ask at the counter with the other listing on your phone.\n\n[from money_jobs.txt]\nOn-campus work\n\nLibrary and dining jobs post in the first week of each semester and go fast. Pay is the same across departments \u2014 the difference is whether you can study during the shift. Library desk: usually yes. Dining: no.\n\nMaximum is 20 hours a week during term. Most people find 10 to 12 is the point where it stops affecting coursework.\n\n[from admin_campus_jobs_and_financial_aid.txt]\nOn the campus jobs and financial aid\n\nWork-study earnings don't count against your financial aid the way ordinary income does. Non-work-study campus jobs pay the same and do count, which is a difference worth understanding before you take the first job offered.\n\n---\n\nQuestion: How much printing credit does each student get per semester?\n\nAnswer using only the documents above, and name the file you used.",
+      "answer": "Each student gets $30 of printing per semester (admin_printing_quota.txt).\n\nSources: admin_printing_quota.txt",
+      "generation_calls": 1
+    },
+    {
+      "question": "What problem was reported on the ground floor of Morrow House?",
+      "refused": false,
+      "best_distance": 0.37165404154184567,
+      "threshold": 0.6,
+      "sources": [
+        "housing_aldridge_hall_noise.txt",
+        "housing_morrow_house.txt",
+        "housing_morrow_house_laundry.txt",
+        "housing_morrow_house_noise.txt",
+        "study_library_hours.txt"
+      ],
+      "prompt": "Documents:\n\n[from housing_morrow_house.txt]\nMorrow House \u2014 what it's actually like\n\nJust finished a year in this building. Built 1954, partially renovated 2008. Rooms are singles and doubles, hall bathrooms.\n\nThe good: cheapest housing tier by about $900 a year, and the singles are real singles.\n\nThe bad: known damp problem on the ground floor; two rooms were taken offline in 2024.\n\nLaundry costs $1.50 wash, $1.25 dry, coin or card. On noise: loud until about 1am on weekends, no enforced quiet hours.\n\n[from housing_morrow_house_laundry.txt]\nLaundry in Morrow House\n\nMachines take $1.50 wash, $1.25 dry, coin or card. There are eight washers and six dryers for the building, which is the wrong ratio and means the dryers back up on Sunday evenings.\n\nBest time to do laundry here is Tuesday or Wednesday morning. Sunday after 6pm you will wait.\n\n[from housing_morrow_house_noise.txt]\nNoise levels in Morrow House\n\nAsked about this a lot so writing it down. Loud until about 1am on weekends, no enforced quiet hours.\n\nIf you're someone who needs quiet to work, the library is open until 2am during term and that's what most people in this building end up doing.\n\n[from study_library_hours.txt]\nLibrary hours and where to actually sit\n\nOpen until 2am during term, until 10pm during reading week, which is backwards and catches everyone out every single year.\n\nThird floor is silent and enforced. Second floor is quiet in theory. The basement has the only outlets at every seat and is therefore full from about 10am.\n\n[from housing_aldridge_hall_noise.txt]\nNoise levels in Aldridge Hall\n\nAsked about this a lot so writing it down. Quiet floors on 3 and 4 are genuinely enforced.\n\nIf you're someone who needs quiet to work, the library is open until 2am during term and that's what most people in this building end up doing.\n\n---\n\nQuestion: What problem was reported on the ground floor of Morrow House?\n\nAnswer using only the documents above, and name the file you used.",
+      "answer": "A known damp problem was reported on the ground floor of Morrow House, which resulted in two rooms being taken offline in 2024.\n\nSources: housing_morrow_house.txt",
+      "generation_calls": 1
+    },
+    {
+      "question": "What is the capital of Mongolia?",
+      "refused": true,
+      "best_distance": 0.8245933196944484,
+      "threshold": 0.6,
+      "sources": [],
+      "prompt": null,
+      "answer": "I don't have enough information about that.",
+      "generation_calls": 0
+    },
+    {
+      "question": "How do I change the oil in a diesel engine?",
+      "refused": true,
+      "best_distance": 0.9340106058763862,
+      "threshold": 0.6,
+      "sources": [],
+      "prompt": null,
+      "answer": "I don't have enough information about that.",
+      "generation_calls": 0
+    },
+    {
+      "question": "Who won the 1994 World Cup?",
+      "refused": true,
+      "best_distance": 0.8858601464900187,
+      "threshold": 0.6,
+      "sources": [],
+      "prompt": null,
+      "answer": "I don't have enough information about that.",
+      "generation_calls": 0
+    },
+    {
+      "question": "What is the recommended dosage of ibuprofen for a headache?",
+      "refused": true,
+      "best_distance": 0.8442317336564793,
+      "threshold": 0.6,
+      "sources": [],
+      "prompt": null,
+      "answer": "I don't have enough information about that.",
+      "generation_calls": 0
+    },
+    {
+      "question": "How do I write a for loop in Rust?",
+      "refused": true,
+      "best_distance": 0.895997681393337,
+      "threshold": 0.6,
+      "sources": [],
+      "prompt": null,
+      "answer": "I don't have enough information about that.",
+      "generation_calls": 0
+    }
+  ]
+}

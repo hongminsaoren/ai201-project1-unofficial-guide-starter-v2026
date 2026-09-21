@@ -28,11 +28,14 @@ For key-free retrieval: `python app.py retrieve "How much printing credit does e
 Run `python -m unittest discover -s tests -v` for regression checks and
 `python calibrate.py` to reproduce the distance table. See `RUNNING.md` for all commands.
 
-**Completion status:** ingestion, custom chunking, real local embeddings, vector
-search, threshold calibration and regression tests are complete. A real hosted
-sample answer is pending configuration of the student's Gemini key. Student-authored
-criteria and rationales are pending in `criteria.md`. This is not yet a complete
-submission. No stretch features are claimed.
+**Implementation status:** the complete pipeline has been run with real local
+embeddings and real Gemini responses. The environment check passes 10/10 and
+regression tests pass 6/6. Five supported questions returned cited answers;
+five out-of-scope questions were refused before generation. See
+`results/unit1_answers.json` and `results/unit1_run.txt` for the captured outputs.
+No stretch features are claimed. Criteria 4–5 were AI-assisted at the student's
+request, after retrieval calibration; their authorship and timing are disclosed
+in `criteria.md` rather than presented as student-written before implementation.
 
 ## Chunking Strategy
 
@@ -124,14 +127,21 @@ Laundry costs $1.75 wash, $1.75 dry, app-based. On noise: moderate; the building
 
 ## Sample Answer
 
-**Pending: a real model-generated answer has not been collected because the API
-key is not configured.** The following is the exact command to run; its complete
-answer and source line must replace this status before submission. No hand-written
-answer is presented as a model run.
+Question: How are juniors and seniors ranked in the housing lottery?
 
-```bash
-python app.py ask "How are juniors and seniors ranked in the housing lottery?" --show-prompt
+Answer (actual `gemini-3.5-flash-lite` response):
+
+```text
+Juniors and seniors are ordered by accumulated credit hours first, and only tie-break randomly (admin_housing_lottery.txt).
+
+Sources: admin_housing_lottery.txt
 ```
+
+The relevance gate passed with best distance 0.203422.
+This sample and the other four in-scope answers were collected with response
+caching disabled. Each in-scope question used one model call; all five unrelated
+questions used zero calls and returned `I don't have enough information about that.`
+Reproduce with `python verify_unit1.py` (makes five model calls).
 
 ### Relevance cutoff and measured distances
 
@@ -167,27 +177,27 @@ retrieve a chunk containing their expected phrase. The transcript expectation
 The grounding instruction requires exact filenames for factual claims, a
 `Sources:` line, preservation of qualifications, and refusal of unsupported
 claims. It also treats document content as data rather than instructions.
-Generation compliance has not been measured yet.
+In the captured run, all five substantive answers name existing source files
+and the cited files support their factual claims. This is a single Unit 1 sanity
+check, not the three-run Unit 2 assessment or a guarantee about later responses.
 
 ## How I Used AI
 
-This section describes the actual assistance in this session; it does not claim
-manual edits or decisions that the student has not made.
+1. I provided the assignment PDF and asked Codex to help complete Project 1.
+   Codex inspected the official starter and campus posts, drafted five test
+   questions, and replaced fixed character windows with paragraph/sentence
+   boundaries and repeated titles. The implementation changed the original
+   800-character windows with 120-character overlap to a 500-character soft body
+   budget with no body overlap. Codex added tests to check that source content
+   survives splitting and that rejected questions never reach generation.
+2. After configuring my Gemini key locally, I explicitly asked Codex to generate
+   the acceptance targets. Codex drafted measurable chunk-quality and factual
+   citation targets, recorded the AI authorship and timing, and then collected
+   five real answers and five gate refusals. The measured distances supported
+   keeping the starter's 0.60 cutoff; the sample-answer placeholder was replaced
+   with actual output. I have not represented the AI-authored targets as my own
+   independent pre-implementation work.
 
-1. The student supplied the assignment PDF and asked Codex to help complete the
-   project. Codex inspected the official starter and campus documents, proposed
-   the paragraph/sentence strategy, and implemented it. Compared with the starter,
-   the resulting code preserves complete thoughts and repeats titles; the student's
-   personal review of this design is still pending.
-2. Codex implemented regression checks and measured ten real retrieval queries.
-   The two distance groups supported retaining the existing 0.60 cutoff rather
-   than claiming an unmeasured improvement. It tightened the grounding instruction
-   to require claim-specific filenames and a source line. The student has not yet
-   supplied an API key, so no generated-answer test is claimed.
-
-The assignment asks for two moments describing the student's own interaction,
-judgment and changes. Before submitting, the student should review this account
-and add their actual decisions; invented personal reflections should not replace it.
 
 ---
 
