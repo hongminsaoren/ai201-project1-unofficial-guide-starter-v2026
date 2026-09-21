@@ -1,42 +1,42 @@
 # Acceptance criteria — The Unofficial Guide
 
-Five criteria that say what "working" means for this system, written in unit 1
-**before** any results existed.
-
-An acceptance criterion names a target: a number, a count, a rate, or something
-a person could plainly observe. *"Retrieval works"* is an opinion. *"For at
-least 4 of my 5 test questions, the top results include a chunk containing the
-answer"* is a criterion.
-
-Under each one, write a sentence or two on **why that target** and not a
-stricter or looser one. A reason that says something about your corpus or your
-pipeline earns credit; *"80% seemed reasonable"* does not.
-
-> Missing your own targets next unit costs you nothing. Setting a target so
-> easy you can't miss it does.
-
----
+Criteria 1–3 are the assignment's supplied targets. Criteria 4–5 and the
+rationales below were drafted by Codex at the student's explicit request.
+These additions were recorded after Unit 1 retrieval calibration and chunk
+implementation, but before collecting the first hosted sample answer or running
+the Unit 2 evaluation. They must not be represented as student-authored,
+pre-implementation criteria. The assignment asks for student-authored criteria;
+this AI-assisted draft does not meet that authorship instruction as written.
+Keep this history and disclose any later revisions rather than backdating them.
 
 ## 1. Retrieved chunks contain the answer
 
 For at least 4 of my 5 test questions, the retrieved chunks include one that
 contains the answer.
 
-**Why this target:**
-<!-- e.g. "One of my questions is about a topic only two documents mention, so
-     I expect that one to be hard." -->
+**How to check:** Run all five questions in `questions.py` with the default
+`TOP_K = 5`. Read each retrieved chunk against the question; a keyword alone is
+not sufficient. Count a success only if one chunk supplies all requested facts.
 
----
+**Why this target:** Several housing posts reuse laundry and noise vocabulary,
+so a neighboring building can be a plausible retrieval mistake. Four of five
+requires useful retrieval across housing and administrative topics while allowing
+one such miss; three would leave too many everyday questions unanswered.
 
 ## 2. Every answer names a source
 
 Every answer the system produces names at least one source document.
 
-**Why this target:**
-<!-- Why all five and not four? What about your setup makes that achievable —
-     or what would have to go wrong for it not to be? -->
+**How to check:** For each substantive answer to the five test questions, check
+that at least one exact filename in `corpora/campus_life/documents/` appears in
+the answer text. Gate refusals are evaluated under criterion 3 and do not invent
+citations. A sources list printed separately by the CLI does not excuse an
+uncited answer body.
 
----
+**Why this target:** Filenames are already provided to the model with every
+excerpt. Every substantive answer should therefore be traceable, including a
+partially supported answer; accepting four of five would knowingly leave one
+answer without a way to verify its claims.
 
 ## 3. The relevance gate stops out-of-corpus questions
 
@@ -44,89 +44,56 @@ When I ask a question my documents clearly don't cover, the relevance gate
 stops it and the system returns "I don't have enough information about that" —
 in at least 4 of 5 tries.
 
-<!-- The five questions are the ones in `OUT_OF_SCOPE` at the bottom of
-     `questions.py`, and `run_eval.py` puts them through the gate and writes
-     what happened into your run log. Swap them for your own if you'd rather —
-     just keep five of them, or the "4 of 5" above has nothing to be 4 of. -->
+**How to check:** Use the five distinct questions in `OUT_OF_SCOPE`, once each.
+Require `refused` to be true, the response to equal `gate.REFUSAL` (including its
+trailing period), and no generation call for that question. A refusal produced
+by the model after the gate passes does not count as a gate success.
 
-**Why this target:**
-<!-- What did your distances look like when you set the cutoff in Milestone 4?
-     Was there a clean gap, or did the two groups overlap? -->
+**Why this target:** The corpus covers campus life rather than world history,
+vehicle maintenance, medicine or programming. The supplied four-of-five target
+allows one misleading semantic match but still requires reliable refusal;
+calibration currently separates these groups, which is evidence for the cutoff,
+not a reason to lower the target later.
 
----
+## 4. Sample chunks preserve a usable, complete thought
 
-## 4. Something about your chunks
+At least 4 of the 5 chunks selected by `python app.py chunks -n 5` must identify
+their subject in the chunk text, contain at least one complete factual statement,
+and neither begin nor end with a sentence fragment introduced by splitting.
+All three conditions must hold for a sampled chunk to count.
 
-<!-- YOU WRITE THIS ONE.
+**How to check:** Compare each displayed chunk with its source document. Record
+three yes/no judgments for each chunk: subject identifiable without a neighboring
+chunk, complete factual statement present, and no sentence cut at either edge.
+Only a row with three yes judgments passes.
 
-     How would you know if your chunks were the right size? Name something
-     countable or observable.
+**Why this target:** Campus posts often use pronouns such as "here" and "this
+building," so intact punctuation alone does not make a chunk useful. Requiring
+four complete, self-contained samples checks both boundaries and context, while
+allowing one informal source post to be ambiguous. Requiring only three would
+leave almost half of the sample unusable on its own.
 
-     Examples of the right shape — don't copy these, they should come from
-     what you actually saw in Milestone 3:
-       - "At least 4 of 5 sampled chunks read as a complete thought, with no
-          sentence cut in half at either end."
-       - "No chunk is shorter than 200 characters, since anything below that
-          in my corpus turned out to be a heading with no content under it." -->
+## 5. Cited answers support every factual claim
 
+For at least 4 of the 5 in-corpus test questions, the system must produce a
+substantive answer in which every factual claim is supported by the exact source
+file cited for that claim, without adding prices, deadlines, rules or other facts
+that are absent from that source. A refusal does not count as a success.
 
+**How to check:** Break each answer into factual claims and open the filename
+cited for each claim. Mark a claim supported only when that file explicitly
+states it or directly entails it. Missing, nonexistent or unrelated citations
+fail the answer, as does any unsupported claim. Record evidence passages so
+another reader can check the judgment.
 
-**Why this target:**
+**Why this target:** A filename can be present while the model mixes the price
+or policy from another building. Four fully supported answers out of five is a
+stronger requirement than merely printing citations, while allowing one failure
+to diagnose in Unit 2. Student anecdotes must remain anecdotes rather than being
+silently upgraded to official university policy.
 
+## Unit 2 revision policy
 
-
----
-
-## 5. Your choice
-
-<!-- YOU WRITE THIS ONE TOO.
-
-     Pick something you actually care about getting right. It could be about
-     speed, about refusals, about a particular kind of question your corpus
-     handles badly, about source attribution being correct rather than merely
-     present — anything, as long as it names a number or an observable
-     outcome. -->
-
-
-
-**Why this target:**
-
-
-
----
-
-<!-- ─────────────────────────────────────────────────────────────────────────
-     UNIT 2 — read this before you change anything above.
-
-     If a criterion turns out to be BROKEN rather than merely unmet, you can
-     revise it, and that earns credit. But never delete or edit the original
-     line. Add the revision underneath it, like this:
-
-         ## 1. Retrieved chunks contain the answer
-
-         For at least 4 of my 5 test questions, the retrieved chunks include
-         one that contains the answer.
-
-         **Why this target:** ...
-
-         > **Revised in unit 2:** For at least 4 of 5 questions, the top three
-         > results contain the answer.
-         >
-         > **Why revised:** I couldn't judge "the chunks include one that
-         > contains the answer" the same way twice — I scored two questions
-         > differently on Monday than on Wednesday. The new version is
-         > something I can actually check.
-
-     That's a revision because the criterion couldn't be MEASURED.
-
-     Lowering a target because you missed it is not a revision, and it costs
-     you the point:
-
-         ✗ "I said 4 of 5 but got 2 of 5, so 2 of 5 is more realistic."
-
-     A number you missed stays where it is, gets diagnosed, and gets a fix
-     attempted. That's where the points are.
-
-     The whole reason the originals stay visible is so someone can see what you
-     said before you knew the answer.
-     ───────────────────────────────────────────────────────────────────────── -->
+Preserve these targets. If a criterion cannot be measured, append a dated
+revision and explain the ambiguity; do not erase the original or lower a target
+because the system missed it. Unit 1 calibration is not a held-out evaluation.
