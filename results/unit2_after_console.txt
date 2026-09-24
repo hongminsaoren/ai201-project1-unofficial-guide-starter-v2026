@@ -1,0 +1,42 @@
+No scorer.py found — running unscored. Verdict column will be blank.
+You'll build scorer.py in class in unit 2.
+
+
+How are juniors and seniors ranked in the housing lottery?
+  run 1: —  (best distance 0.203)
+  run 2: —  (best distance 0.203)
+  run 3: —  (best distance 0.203)
+
+How much does a wash cost in Aldridge Hall, and how do you pay?
+  run 1: —  (best distance 0.273)
+  run 2: —  (best distance 0.273)
+  run 3: —  (best distance 0.273)
+
+What appears on my transcript if I drop a course after week two?
+  run 1: —  (best distance 0.267)
+  run 2: —  (best distance 0.267)
+  run 3: —  (best distance 0.267)
+
+How much printing credit does each student get per semester?
+  run 1: —  (best distance 0.377)
+  run 2: —  (best distance 0.377)
+  run 3: —  (best distance 0.377)
+
+What problem was reported on the ground floor of Morrow House?
+  run 1: —  (best distance 0.372)
+  run 2: —  (best distance 0.372)
+  run 3: —  (best distance 0.372)
+
+Out-of-scope questions (the gate should refuse these):
+  refused  (best distance 0.825)  What is the capital of Mongolia?
+  refused  (best distance 0.934)  How do I change the oil in a diesel engine?
+  refused  (best distance 0.886)  Who won the 1994 World Cup?
+  refused  (best distance 0.844)  What is the recommended dosage of ibuprofen for a headache?
+  refused  (best distance 0.896)  How do I write a for loop in Rust?
+  -> gate refused 5 of 5
+
+Wrote results/run_2026-09-23_1949_after.md
+15 model calls this session, 11080 tokens (10461 in, 619 out)
+
+Commit this file. It's the evidence the run actually happened.
+Additional evidence: results/unit2_after_evidence.json

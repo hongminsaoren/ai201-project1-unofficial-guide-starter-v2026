@@ -1,0 +1,12 @@
+2026-09-23 19:49:58.171 Python[49850:9320238] 2026-09-23 19:49:58.171006 [W:onnxruntime:Default, telemetry.cc:800 operator()] Failed to persist telemetry device ID; using an in-memory identifier
+test_corpus_content_and_source_preserved (test_pipeline.ChunkTests.test_corpus_content_and_source_preserved) ... ok
+test_empty_document (test_pipeline.ChunkTests.test_empty_document) ... ok
+test_long_paragraph_preserves_sentences_and_title (test_pipeline.ChunkTests.test_long_paragraph_preserves_sentences_and_title) ... ok
+test_long_sentence_is_not_truncated (test_pipeline.ChunkTests.test_long_sentence_is_not_truncated) ... ok
+test_rejection_never_calls_generator (test_pipeline.GateTests.test_rejection_never_calls_generator) ... ok
+test_strict_boundary (test_pipeline.GateTests.test_strict_boundary) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.007s
+
+OK
